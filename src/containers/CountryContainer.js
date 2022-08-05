@@ -12,6 +12,7 @@ const CountryContainer = () => {
     useEffect(() => {
         getCountries();
     }, [])
+    
     useEffect(() => {
         getBorderingCountries(selectedCountry);
     },[selectedCountry]) 
@@ -20,6 +21,7 @@ const CountryContainer = () => {
         .then(res => res.json())
         .then(countries => setCountries(countries));
     }
+
 
     const addFavourites= (selectedCountry) =>{
         if (favourites.includes(selectedCountry)){
@@ -41,7 +43,7 @@ const CountryContainer = () => {
             const borderingCountriesCodes = selectedCountry.borders
             const borderingCountries = []
         if (!borderingCountriesCodes){
-            return 
+            setBorderingCountries([]) // new
         } else {
         for( const code of borderingCountriesCodes){
             const found = countries.find((country)=>country.cca3===code) 
